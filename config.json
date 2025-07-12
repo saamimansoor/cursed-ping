@@ -1,0 +1,40 @@
+{
+  "master_switch": true,
+  "cooldown_minutes": 15,
+  "systems": {
+    "MCHI": {
+      "active": true,
+      "url": "https://mer.getvisitapp.com/mchi/mis/view-internal",
+      "prop_id_col": 1,
+      "remarks_col": 13,
+      "filter_label": "Recall",
+      "icon": "\ud83d\udd36"
+    },
+    "ABSLI": {
+      "active": false,
+      "url": "https://mer.getvisitapp.com/absli/mis/view",
+      "prop_id_col": 2,
+      "remarks_col": 20,
+      "filter_label": "Call back requested",
+      "icon": "\ud83d\udd34"
+    },
+    "LIC - Direct": {
+      "active": true,
+      "icon": "\ud83d\udfe6",
+      "url": "https://mer.getvisitapp.com/lic/mis/view-direct",
+      "prop_id_col": 1,
+      "remarks_col": 9,
+      "filter_label": "Call back requested",
+      "member_name_col": 2
+    },
+    "LIC - Vidal": {
+      "active": true,
+      "icon": "\ud83d\udfe6",
+      "url": "https://mer.getvisitapp.com/lic/mis/view",
+      "prop_id_col": 1,
+      "remarks_col": 9,
+      "filter_label": "Call back requested",
+      "member_name_col": 2
+    }
+  }
+}
