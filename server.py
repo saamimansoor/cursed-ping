@@ -1,5 +1,5 @@
 from flask import Flask
-import subprocess
+from visitcb import run, parse_args
 
 app = Flask(__name__)
 
@@ -10,8 +10,9 @@ def home():
 @app.route("/run-bot")
 def run_bot():
     try:
-        subprocess.run(["python", "visitcb.py"], check=True)
-        return "✅ Ping Successful!"
+        opts = parse_args()
+        run(opts.future_min, opts.lookback_hrs)
+        return "✅ Bot executed!"
     except Exception as e:
         return f"❌ Bot run failed: {e}", 500
 
