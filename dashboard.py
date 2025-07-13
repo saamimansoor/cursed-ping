@@ -1,3 +1,5 @@
+import os
+os.system("playwright install chromium")
 import json
 import os
 import streamlit as st
