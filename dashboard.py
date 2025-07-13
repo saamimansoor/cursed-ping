@@ -12,16 +12,14 @@ with open(CONFIG_PATH, "r", encoding="utf-8") as f:
 
 st.set_page_config(page_title="Notify Senpai")
 
-# ─── ANIMATED TITLE ───────────────────────────────────────────────
-st.markdown(
-    """
+# ─── CUSTOM CSS FOR TOGGLES ──────────────────────────────────────
+st.markdown("""
     <style>
     @keyframes cursedGlow {
         0% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; }
         50% { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff5555; }
         100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; }
     }
-
     .cursed-title {
         font-family: 'Courier New', monospace;
         font-size: 42px;
@@ -31,14 +29,29 @@ st.markdown(
         animation: cursedGlow 1.8s infinite;
         margin-bottom: 2rem;
     }
+
+    /* Toggle styling */
+    .stCheckbox > div {
+        display: flex;
+        align-items: center;
+    }
+    .stCheckbox div[data-baseweb="checkbox"] {
+        visibility: hidden;
+        width: 0;
+    }
+    .stCheckbox label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #222;
+        border-radius: 24px;
+        padding: 2px 8px;
+    }
     </style>
+""", unsafe_allow_html=True)
 
-    <h1 class='cursed-title'>CURSED PING</h1>
-    """,
-    unsafe_allow_html=True
-)
-
-# ─── LINE BREAK AFTER HEADING ─────────────────────────────────────
+# ─── HEADER ───────────────────────────────────────────────────────
+st.markdown("<h1 class='cursed-title'>CURSED PING</h1>", unsafe_allow_html=True)
 st.markdown("---")
 
 # ─── MASTER SWITCH ───────────────────────────────────────────────
@@ -50,7 +63,7 @@ st.subheader("MIS Systems")
 
 # ─── SYSTEM TOGGLES ────────────────────────────────────────────────
 for name, sys in config["systems"].items():
-    new_active = st.checkbox(f"{sys['icon']}  {name}", value=sys["active"])
+    new_active = st.checkbox(f"{sys['icon']} {name}", value=sys["active"])
     config["systems"][name]["active"] = new_active
 
 st.markdown("---")
@@ -92,6 +105,7 @@ if st.button("▶️ Run Bot Now"):
         st.code(result.stdout + "\n" + result.stderr)
     st.success("✅ Bot run complete!")
 
+# ─── FOOTER ─────────────────────────────────────────────────────────
 st.markdown("""
 ---
 🙂 Made with broken backs, chainsaw blades, and ChatGPT.
