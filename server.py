@@ -1,5 +1,9 @@
 from flask import Flask
-from visitcb import run, parse_args
+import subprocess
+import os
+
+# Install Chromium on startup
+os.system("playwright install chromium")
 
 app = Flask(__name__)
 
@@ -10,9 +14,8 @@ def home():
 @app.route("/run-bot")
 def run_bot():
     try:
-        opts = parse_args()
-        run(opts.future_min, opts.lookback_hrs)
-        return "✅ Bot executed!"
+        subprocess.run(["python", "visitcb.py"], check=True)
+        return "✅ Ping Successful!"
     except Exception as e:
         return f"❌ Bot run failed: {e}", 500
 
