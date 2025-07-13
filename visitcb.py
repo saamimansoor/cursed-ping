@@ -160,7 +160,7 @@ def run(future_min: int, lookback_hrs: int):
         return
 
     # Cooldown check first to avoid unnecessary work
-    cooldown_minutes = cfg.get("cooldown_minutes", 15)
+    cooldown_minutes = cfg.get("cooldown_minutes", 0)
     if is_in_cooldown(cooldown_minutes):
         print(f"⏳  Cooldown active ({cooldown_minutes} min) — skipping everything.")
         return
