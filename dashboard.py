@@ -1,7 +1,8 @@
 import os
 os.system("playwright install chromium")
+
 import json
-import os
+import subprocess
 import streamlit as st
 
 # ─── PATHS & LOAD ────────────────────────────────────────────────
@@ -9,7 +10,7 @@ CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
 with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     config = json.load(f)
 
-st.set_page_config(page_title="CursedPing Dashboard")
+st.set_page_config(page_title="Notify Senpai")
 
 # ─── ANIMATED TITLE ───────────────────────────────────────────────
 st.markdown(
@@ -82,6 +83,14 @@ if st.button("💾 Save All Changes"):
     with open(CONFIG_PATH, "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
     st.success("Configuration saved!")
+
+# ─── RUN BOT NOW BUTTON ─────────────────────────────────────────────
+st.markdown("---")
+if st.button("▶️ Run Bot Now"):
+    with st.spinner("Running bot..."):
+        result = subprocess.run(["python", "run_bot.py"], capture_output=True, text=True)
+        st.code(result.stdout + "\n" + result.stderr)
+    st.success("✅ Bot run complete!")
 
 st.markdown("""
 ---
