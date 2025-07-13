@@ -2,3 +2,4 @@ streamlit
 playwright
 pytz
 requests
+flask
